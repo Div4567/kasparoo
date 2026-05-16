@@ -1,0 +1,502 @@
+[
+  {
+    "id": 1,
+    "question": "Can I get help regarding support?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 2,
+    "question": "What is the policy for warranty?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 3,
+    "question": "How long does support take?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 4,
+    "question": "How can I request shipping?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 5,
+    "question": "What is the policy for support?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 6,
+    "question": "How can I request cancellation?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 7,
+    "question": "What is the policy for payments?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 8,
+    "question": "Is returns available for all products?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 9,
+    "question": "How can I request support?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 10,
+    "question": "What is the policy for warranty?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 11,
+    "question": "How can I request returns?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 12,
+    "question": "Is payments available for all products?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 13,
+    "question": "What is the policy for warranty?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 14,
+    "question": "What is the policy for shipping?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 15,
+    "question": "Is support available for all products?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 16,
+    "question": "Is support available for all products?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 17,
+    "question": "What is the policy for payments?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 18,
+    "question": "What is the policy for tracking?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 19,
+    "question": "Is exchange available for all products?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 20,
+    "question": "How can I request tracking?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 21,
+    "question": "Can I get help regarding cancellation?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 22,
+    "question": "How long does payments take?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 23,
+    "question": "How long does shipping take?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 24,
+    "question": "Can I get help regarding cancellation?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 25,
+    "question": "How can I request payments?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 26,
+    "question": "Is support available for all products?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 27,
+    "question": "Can I get help regarding support?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 28,
+    "question": "Can I get help regarding shipping?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 29,
+    "question": "What is the policy for warranty?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 30,
+    "question": "How long does returns take?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 31,
+    "question": "How can I request delivery?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 32,
+    "question": "How long does delivery take?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 33,
+    "question": "Is exchange available for all products?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 34,
+    "question": "How can I request payments?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 35,
+    "question": "What is the policy for delivery?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 36,
+    "question": "How can I request shipping?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 37,
+    "question": "What is the policy for support?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 38,
+    "question": "Is delivery available for all products?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 39,
+    "question": "What is the policy for shipping?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 40,
+    "question": "Can I get help regarding delivery?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 41,
+    "question": "Is payments available for all products?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 42,
+    "question": "Can I get help regarding tracking?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 43,
+    "question": "Is support available for all products?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 44,
+    "question": "Is delivery available for all products?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 45,
+    "question": "Is support available for all products?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 46,
+    "question": "What is the policy for exchange?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 47,
+    "question": "How can I request refunds?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 48,
+    "question": "How long does tracking take?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 49,
+    "question": "Can I get help regarding exchange?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 50,
+    "question": "How long does cancellation take?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 51,
+    "question": "How can I request tracking?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 52,
+    "question": "How long does returns take?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 53,
+    "question": "Is warranty available for all products?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 54,
+    "question": "How long does tracking take?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 55,
+    "question": "Can I get help regarding returns?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 56,
+    "question": "Can I get help regarding warranty?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 57,
+    "question": "Is refunds available for all products?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 58,
+    "question": "Can I get help regarding warranty?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 59,
+    "question": "Is cancellation available for all products?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 60,
+    "question": "How long does returns take?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 61,
+    "question": "How can I request exchange?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 62,
+    "question": "Can I get help regarding delivery?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 63,
+    "question": "Can I get help regarding delivery?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 64,
+    "question": "Can I get help regarding refunds?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 65,
+    "question": "Is warranty available for all products?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 66,
+    "question": "How long does refunds take?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 67,
+    "question": "What is the policy for delivery?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 68,
+    "question": "Is tracking available for all products?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 69,
+    "question": "Can I get help regarding returns?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 70,
+    "question": "What is the policy for shipping?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 71,
+    "question": "What is the policy for shipping?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 72,
+    "question": "How can I request delivery?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 73,
+    "question": "How long does warranty take?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 74,
+    "question": "Can I get help regarding cancellation?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 75,
+    "question": "Is warranty available for all products?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 76,
+    "question": "How can I request delivery?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 77,
+    "question": "How long does delivery take?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 78,
+    "question": "What is the policy for returns?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 79,
+    "question": "What is the policy for exchange?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 80,
+    "question": "Can I get help regarding payments?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 81,
+    "question": "Is cancellation available for all products?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 82,
+    "question": "Is warranty available for all products?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 83,
+    "question": "What is the policy for shipping?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 84,
+    "question": "Can I get help regarding support?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 85,
+    "question": "How can I request shipping?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 86,
+    "question": "How can I request cancellation?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 87,
+    "question": "Is tracking available for all products?",
+    "answer": "This feature is available for eligible orders."
+  },
+  {
+    "id": 88,
+    "question": "How can I request shipping?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 89,
+    "question": "How can I request tracking?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 90,
+    "question": "How long does warranty take?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 91,
+    "question": "What is the policy for exchange?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 92,
+    "question": "Can I get help regarding delivery?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 93,
+    "question": "How long does cancellation take?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 94,
+    "question": "What is the policy for returns?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 95,
+    "question": "How can I request payments?",
+    "answer": "Our support team will assist you regarding this issue."
+  },
+  {
+    "id": 96,
+    "question": "Can I get help regarding payments?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 97,
+    "question": "Can I get help regarding refunds?",
+    "answer": "The request is usually processed within 3-5 business days."
+  },
+  {
+    "id": 98,
+    "question": "Can I get help regarding payments?",
+    "answer": "You can contact customer support for assistance."
+  },
+  {
+    "id": 99,
+    "question": "Can I get help regarding shipping?",
+    "answer": "Please check your account dashboard for more details."
+  },
+  {
+    "id": 100,
+    "question": "How long does tracking take?",
+    "answer": "Our support team will assist you regarding this issue."
+  }
+]

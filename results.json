@@ -1,0 +1,80 @@
+{
+  "query": "delivery status",
+  "results": [
+    {
+      "document_id": "31",
+      "source": "faq",
+      "title": "",
+      "description": "",
+      "faq_question": "How can I request delivery?",
+      "faq_answer": "This feature is available for eligible orders.",
+      "category": "",
+      "price": "",
+      "status": "",
+      "customer": "",
+      "order_id": "",
+      "embedded_text": "",
+      "score": 0.6827356815338135
+    },
+    {
+      "document_id": "40",
+      "source": "faq",
+      "title": "",
+      "description": "",
+      "faq_question": "Can I get help regarding delivery?",
+      "faq_answer": "Our support team will assist you regarding this issue.",
+      "category": "",
+      "price": "",
+      "status": "",
+      "customer": "",
+      "order_id": "",
+      "embedded_text": "",
+      "score": 0.6722724437713623
+    },
+    {
+      "document_id": "72",
+      "source": "faq",
+      "title": "",
+      "description": "",
+      "faq_question": "How can I request delivery?",
+      "faq_answer": "Please check your account dashboard for more details.",
+      "category": "",
+      "price": "",
+      "status": "",
+      "customer": "",
+      "order_id": "",
+      "embedded_text": "",
+      "score": 0.66206294298172
+    },
+    {
+      "document_id": "35",
+      "source": "faq",
+      "title": "",
+      "description": "",
+      "faq_question": "What is the policy for delivery?",
+      "faq_answer": "Our support team will assist you regarding this issue.",
+      "category": "",
+      "price": "",
+      "status": "",
+      "customer": "",
+      "order_id": "",
+      "embedded_text": "",
+      "score": 0.6504091620445251
+    },
+    {
+      "document_id": "67",
+      "source": "faq",
+      "title": "",
+      "description": "",
+      "faq_question": "What is the policy for delivery?",
+      "faq_answer": "Our support team will assist you regarding this issue.",
+      "category": "",
+      "price": "",
+      "status": "",
+      "customer": "",
+      "order_id": "",
+      "embedded_text": "",
+      "score": 0.6504091620445251
+    }
+  ]
+}
