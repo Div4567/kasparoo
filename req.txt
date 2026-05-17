@@ -1,0 +1,236 @@
+# Kasparo Customer Support Agent Setup Guide
+
+## requirements.txt
+
+```txt
+pymongo
+pymilvus
+sentence-transformers
+requests
+torch
+transformers
+numpy
+scikit-learn
+```
+
+---
+
+# MongoDB Installation and Database Setup
+
+## Step 1: Install MongoDB
+
+Download MongoDB Community Server:
+
+* Official Website: [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
+
+Install MongoDB using the default settings.
+
+---
+
+# Step 2: Create MongoDB Data Folder (Windows)
+
+Open Command Prompt as Administrator and run:
+
+```bash
+mkdir C:\data\db
+```
+
+---
+
+# Step 3: Start MongoDB Server
+
+Open a terminal and run:
+
+```bash
+mongod
+```
+
+If successful, you should see:
+
+```text
+Waiting for connections
+```
+
+Keep this terminal open.
+
+---
+
+# Step 4: Create Python Virtual Environment
+
+Inside the project folder:
+
+```bash
+python -m venv .venv
+```
+
+Activate virtual environment:
+
+PowerShell:
+
+```bash
+.\.venv\Scripts\activate
+```
+
+---
+
+# Step 5: Install Python Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Step 6: MongoDB Loader Script
+
+Create a file named:
+
+```text
+load_data.py
+```
+
+Paste this code:
+
+```python
+import json
+from pymongo import MongoClient
+
+# Connect MongoDB
+client = MongoClient("mongodb://127.0.0.1:27017")
+
+# Create database
+db = client["kasparo_db"]
+
+# Collections
+faq_collection = db["faqs"]
+product_collection = db["products"]
+order_collection = db["orders"]
+
+# Load FAQs
+with open("faq.json", "r") as f:
+    faq_data = json.load(f)
+
+if faq_data:
+    faq_collection.insert_many(faq_data)
+    print("FAQ data inserted")
+
+# Load Products
+with open("product.json", "r") as f:
+    product_data = json.load(f)
+
+if product_data:
+    product_collection.insert_many(product_data)
+    print("Product data inserted")
+
+# Load Orders
+with open("orders.json", "r") as f:
+    order_data = json.load(f)
+
+if order_data:
+    order_collection.insert_many(order_data)
+    print("Orders data inserted")
+
+print("All data loaded successfully")
+```
+
+---
+
+# Step 7: Load Database Data
+
+Run:
+
+```bash
+python load_data.py
+```
+
+Expected Output:
+
+```text
+FAQ data inserted
+Product data inserted
+Orders data inserted
+All data loaded successfully
+```
+
+---
+
+# Step 8: Verify Database
+
+Open another terminal:
+
+```bash
+mongosh
+```
+
+Then run:
+
+```javascript
+show dbs
+```
+
+Use database:
+
+```javascript
+use kasparo_db
+```
+
+Show collections:
+
+```javascript
+show collections
+```
+
+Expected:
+
+```text
+faqs
+products
+orders
+```
+
+Check stored data:
+
+```javascript
+db.products.findOne()
+```
+
+```javascript
+db.orders.findOne()
+```
+
+```javascript
+db.faqs.findOne()
+```
+
+---
+
+# Recommended Project Structure
+
+```text
+kasparo/
+│
+├── faq.json
+├── product.json
+├── orders.json
+├── load_data.py
+├── requirements.txt
+│
+├── chatbot.py
+├── ollama_client.py
+│
+└── .venv/
+```
+
+---
+
+# Architecture
+
+User Query
+↓
+MongoDB → Exact product/order lookup
+↓
+Milvus → Semantic retrieval
+↓
+Ollama + Qwen → Response generation
+↓
+Final Answer
