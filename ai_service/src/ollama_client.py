@@ -1,7 +1,7 @@
 import requests
 from typing import Any, Dict, List, Optional
 
-from pymilvus import Collection, connections, utility
+from pymilvus import MilvusClient
 from sentence_transformers import SentenceTransformer
 
 BASE_URL = "http://localhost:11434"
@@ -12,12 +12,12 @@ EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 
 
 def chat(messages: List[Dict[str, str]],
-         model: str = "qwen2.5:3b",
+         model: str = "qwen:4b",
          temperature: float = 0.0,
          max_tokens: Optional[int] = None,
          timeout: int = 60) -> str:
     """
-    Send chat-style messages to Ollama and return the assistant reply.
+    Send chat-style messages to Ollama and return the model reply.
     messages: list of {"role": "system|user|assistant", "content": "..."}
     """
     url = f"{BASE_URL}/api/chat"
@@ -52,12 +52,11 @@ def milvus_search(query: str,
                   host: str = MILVUS_HOST,
                   port: str = MILVUS_PORT) -> List[Dict[str, Any]]:
     """Search Milvus for the top-k documents relevant to the query."""
-    connections.connect(alias="default", host=host, port=port)
-    if not utility.has_collection(collection_name):
+    client = MilvusClient(uri=f"http://{host}:{port}")
+    if not client.has_collection(collection_name=collection_name):
         raise RuntimeError(f"Milvus collection '{collection_name}' does not exist.")
 
-    collection = Collection(collection_name)
-    collection.load()
+    client.load_collection(collection_name=collection_name)
 
     query_embedding = embed_query(query)
     search_params = {
@@ -65,20 +64,20 @@ def milvus_search(query: str,
         "params": {"nprobe": nprobe},
     }
 
-    results = collection.search(
+    results = client.search(
+        collection_name=collection_name,
         data=[query_embedding],
         anns_field="embedding",
-        param=search_params,
+        search_params=search_params,
         limit=top_k,
-        expr=None,
         output_fields=["source", "title", "description", "embedded_text", "faq_question", "faq_answer"],
     )
 
     hits: List[Dict[str, Any]] = []
     for hit in results[0]:
-        entity = hit.entity
+        entity = hit.get("entity", {})
         hits.append({
-            "score": hit.distance,
+            "score": hit.get("distance"),
             "source": entity.get("source"),
             "title": entity.get("title"),
             "description": entity.get("description"),
@@ -115,7 +114,7 @@ def build_context(results: List[Dict[str, Any]]) -> str:
 def search_and_answer(query: str,
                       top_k: int = 5,
                       nprobe: int = 16,
-                      model: str = "qwen2.5:3b",
+                      model: str = "qwen:4b",
                       temperature: float = 0.0,
                       max_tokens: Optional[int] = None,
                       timeout: int = 60,
@@ -156,7 +155,7 @@ if __name__ == "__main__":
     answer = search_and_answer(
         query=query,
         top_k=5,
-        model="qwen2.5:3b"
+        model="qwen:4b"
     )
 
     print("\nANSWER:\n")

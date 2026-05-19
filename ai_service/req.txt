@@ -2,7 +2,6 @@
 
 ## requirements.txt
 
-```txt
 pymongo
 pymilvus
 sentence-transformers
@@ -11,7 +10,12 @@ torch
 transformers
 numpy
 scikit-learn
-```
+flask
+flask-cors
+uvicorn
+fastapi
+python-dotenv
+pydantic
 
 ---
 
