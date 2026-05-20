@@ -2,12 +2,10 @@ import requests
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
-import os
+
+from src.model_config import DEFAULT_MODEL
 
 app = FastAPI(title="Get Smth Chat Service")
-
-# Support for model switching, defaulting to Qwen
-DEFAULT_MODEL = os.getenv("LLM_MODEL", "qwen:4b")
 
 
 class ChatRequest(BaseModel):
@@ -77,7 +75,7 @@ def handle_chat(req: ChatRequest):
 
         # 4. Generate Response using Model
         model_to_use = req.model if req.model else DEFAULT_MODEL
-        reply = chat(messages, model=model_to_use)
+        reply, model_used = chat(messages, model=model_to_use)
 
         # 5. Intent and Escalation
         escalate = check_escalation(req.query, intent, reply)
@@ -86,7 +84,7 @@ def handle_chat(req: ChatRequest):
             "reply": reply,
             "intent": intent,
             "escalate": escalate,
-            "model_used": model_to_use,
+            "model_used": model_used,
             "context_retrieved": len(search_results)
         }
     except Exception as e:

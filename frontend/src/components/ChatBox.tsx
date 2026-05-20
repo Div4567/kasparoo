@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Send, User, Bot, Loader2, Sparkles } from 'lucide-react';
+import { Send, User, Bot, Sparkles, ChevronDown } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -14,6 +14,30 @@ const ChatBox: React.FC = () => {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [models, setModels] = useState<string[]>(['qwen3:4b', 'qwen:4b']);
+  const [selectedModel, setSelectedModel] = useState('qwen3:4b');
+  const [loadingModels, setLoadingModels] = useState(true);
+
+  useEffect(() => {
+    const loadModels = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/models');
+        const installedModels = Array.isArray(res.data?.models) && res.data.models.length > 0
+          ? res.data.models
+          : ['qwen3:4b', 'qwen:4b'];
+        setModels(installedModels);
+        setSelectedModel(res.data?.defaultModel && installedModels.includes(res.data.defaultModel)
+          ? res.data.defaultModel
+          : installedModels[0]);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoadingModels(false);
+      }
+    };
+
+    loadModels();
+  }, []);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -27,7 +51,8 @@ const ChatBox: React.FC = () => {
       const res = await axios.post('http://localhost:5000/api/chat', {
         message: input,
         userId: 'demo-user-123',
-        history: messages.map(m => ({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.text }))
+        history: messages.map(m => ({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.text })),
+        model: selectedModel
       });
       
       const botMsg: Message = { id: Date.now().toString(), sender: 'bot', text: res.data.reply || 'Sorry, I could not understand that.' };
@@ -43,13 +68,33 @@ const ChatBox: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full bg-white dark:bg-gray-800 rounded-[2rem] shadow-lg border border-gray-100 dark:border-gray-700/50 overflow-hidden transition-all duration-300 relative">
       <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-5 text-gray-800 dark:text-white flex items-center justify-between border-b border-gray-100 dark:border-gray-700/50 z-20 sticky top-0">
-        <div className="flex items-center">
-          <div className="bg-emerald-50 dark:bg-emerald-900/30 p-2.5 rounded-2xl mr-4 flex-shrink-0 animate-pulse-slow">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="bg-emerald-50 dark:bg-emerald-900/30 p-2.5 rounded-2xl flex-shrink-0 animate-pulse-slow">
              <Bot size={24} className="text-emerald-600 dark:text-emerald-400" />
           </div>
-          <div>
-            <h3 className="font-extrabold text-lg tracking-tight">Divya Support</h3>
+          <div className="min-w-0">
+            <h3 className="font-extrabold text-lg tracking-tight truncate">Divya Support</h3>
             <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center font-medium mt-0.5"><Sparkles size={10} className="mr-1 text-emerald-500" /> AI Assistant</p>
+          </div>
+        </div>
+        <div className="ml-3 flex flex-col items-end gap-1">
+          <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+            Model
+          </label>
+          <div className="relative">
+            <select
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+              disabled={loading || loadingModels}
+              className="appearance-none bg-gray-50 dark:bg-gray-900/60 text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-full pl-4 pr-9 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/40 disabled:opacity-70"
+            >
+              {models.map((modelName) => (
+                <option key={modelName} value={modelName}>
+                  {modelName}
+                </option>
+              ))}
+            </select>
+            <ChevronDown size={14} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400" />
           </div>
         </div>
       </div>

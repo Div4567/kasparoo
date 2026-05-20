@@ -4,6 +4,8 @@ from typing import Any, Dict, List, Optional
 from pymilvus import MilvusClient
 from sentence_transformers import SentenceTransformer
 
+from src.model_config import DEFAULT_MODEL, get_model_attempts
+
 BASE_URL = "http://localhost:11434"
 MILVUS_HOST = "127.0.0.1"
 MILVUS_PORT = "19530"
@@ -12,17 +14,16 @@ EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 
 
 def chat(messages: List[Dict[str, str]],
-         model: str = "qwen:4b",
+         model: str = DEFAULT_MODEL,
          temperature: float = 0.0,
          max_tokens: Optional[int] = None,
-         timeout: int = 60) -> str:
+         timeout: int = 180) -> tuple[str, str]:
     """
     Send chat-style messages to Ollama and return the model reply.
     messages: list of {"role": "system|user|assistant", "content": "..."}
     """
     url = f"{BASE_URL}/api/chat"
     payload = {
-        "model": model,
         "messages": messages,
         "stream": False,
         "options": {
@@ -32,10 +33,18 @@ def chat(messages: List[Dict[str, str]],
     if max_tokens is not None:
         payload["max_tokens"] = max_tokens
 
-    resp = requests.post(url, json=payload, timeout=timeout)
-    resp.raise_for_status()
-    data = resp.json()
-    return data["message"]["content"]
+    last_error: Optional[Exception] = None
+    for model_name in get_model_attempts(model):
+        try:
+            payload["model"] = model_name
+            resp = requests.post(url, json=payload, timeout=timeout)
+            resp.raise_for_status()
+            data = resp.json()
+            return data["message"]["content"], model_name
+        except Exception as exc:
+            last_error = exc
+
+    raise RuntimeError(f"All Ollama model attempts failed: {last_error}")
 
 
 def embed_query(text: str, model_name: str = EMBEDDING_MODEL_NAME) -> List[float]:
@@ -114,14 +123,14 @@ def build_context(results: List[Dict[str, Any]]) -> str:
 def search_and_answer(query: str,
                       top_k: int = 5,
                       nprobe: int = 16,
-                      model: str = "qwen:4b",
+                      model: str = DEFAULT_MODEL,
                       temperature: float = 0.0,
                       max_tokens: Optional[int] = None,
-                      timeout: int = 60,
+                      timeout: int = 180,
                       milvus_host: str = MILVUS_HOST,
                       milvus_port: str = MILVUS_PORT,
-                      milvus_collection: str = MILVUS_COLLECTION) -> str:
-    """Retrieve top-k context from Milvus, then ask Qwen to answer using that context."""
+                      milvus_collection: str = MILVUS_COLLECTION) -> tuple[str, str]:
+    """Retrieve top-k context from Milvus, then ask the configured Ollama model to answer using that context."""
     results = milvus_search(query,
                             top_k=top_k,
                             nprobe=nprobe,
@@ -152,10 +161,10 @@ def search_and_answer(query: str,
 if __name__ == "__main__":
     query = input("enter your query here")
 
-    answer = search_and_answer(
+    answer, model_used = search_and_answer(
         query=query,
         top_k=5,
-        model="qwen:4b"
+        model=DEFAULT_MODEL
     )
 
     print("\nANSWER:\n")

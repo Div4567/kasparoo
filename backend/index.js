@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const { execFileSync } = require('child_process');
 const connectDB = require('./db');
 const Order = require('./models/Order');
 const Ticket = require('./models/Ticket');
@@ -16,9 +17,34 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
+const DEFAULT_MODEL = process.env.LLM_MODEL || 'qwen3:4b';
+
+function getInstalledModels() {
+    try {
+        const output = execFileSync('ollama', ['list'], { encoding: 'utf8' });
+        return output
+            .split('\n')
+            .map(line => line.trim())
+            .filter(Boolean)
+            .slice(1)
+            .map(line => line.split(/\s+/)[0])
+            .filter(Boolean);
+    } catch (error) {
+        console.error('Error listing Ollama models:', error.message);
+        return [DEFAULT_MODEL, 'qwen:4b'];
+    }
+}
 
 app.get('/health', (req, res) => {
     res.json({ status: 'ok', service: 'Backend API Gateway' });
+});
+
+app.get('/api/models', (req, res) => {
+    const models = getInstalledModels();
+    res.json({
+        models,
+        defaultModel: DEFAULT_MODEL,
+    });
 });
 
 // Fetch Products from MongoDB
@@ -99,19 +125,21 @@ app.post('/api/tickets', async (req, res) => {
 // Chat endpoint bridging to external chat service
 app.post('/api/chat', async (req, res) => {
     try {
-        const { message, userId, history } = req.body;
+        const { message, userId, history, model } = req.body;
         
         // Send query to the external chat service
         const aiResponse = await axios.post(`${AI_SERVICE_URL}/chat`, {
             query: message,
             user_id: userId,
-            history: history
+            history: history,
+            model: model
         });
 
         res.json({
             reply: aiResponse.data.reply,
             intent: aiResponse.data.intent,
-            escalate: aiResponse.data.escalate
+            escalate: aiResponse.data.escalate,
+            model_used: aiResponse.data.model_used
         });
     } catch (error) {
         console.error("Chat service error:", error.message);
